@@ -3,29 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Interface Example</title>
+    <title>Chat Interface</title>
     <link rel="stylesheet" href="chi.css">
 </head>
 <body>
     <script src="chi.js"></script>
     <script>
-        // Custom function to handle message sending
-        async function handleUserMessage(message) {
-            // Here, you can include any logic to determine the response
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(`You said: ${message}`); // Modify as needed for AI response
-                }, 1000);
-            });
-        }
-
-        // Initialize the ChatInterface
         const chat = new ChatInterface({
             container: document.body,
             headerText: "Welcome to CHI",
-            subHeaderText: "Ask me anything!",
-            onMessageSend: handleUserMessage // Pass the custom function
+            subHeaderText: "Your Chat Interface",
+            onMessageSend: async (message) => {
+                // Simulate a response from the bot (you can replace this with your logic)
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        resolve(`Bot: You said "${message}"`);
+                    }, 2000); // Simulated delay
+                });
+            }
         });
     </script>
 </body>
 </html>
+=

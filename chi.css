@@ -1,4 +1,3 @@
-/* chi.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -56,8 +55,25 @@ button {
     color: white;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #0056b3;
+}
+
+/* Loading Spinner */
+.spinner {
+    border: 4px solid rgba(0, 123, 255, 0.3);
+    border-top: 4px solid #007BFF;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin: 5px auto; /* Center it */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

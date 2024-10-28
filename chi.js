@@ -1,4 +1,3 @@
-// chi.js
 class ChatInterface {
     constructor(options) {
         this.container = options.container || document.body;
@@ -54,17 +53,23 @@ class ChatInterface {
             this.displayMessage(messageText, 'user');
             this.input.value = '';
 
-            // Check if a custom onMessageSend function is provided
+            // Show loading spinner
+            const loadingSpinner = document.createElement('div');
+            loadingSpinner.className = 'spinner';
+            this.displayMessage(loadingSpinner.outerHTML, 'bot');
+
             if (this.onMessageSend) {
-                // Call the custom function with the user's message
                 this.onMessageSend(messageText).then(responseText => {
+                    // Remove loading message
+                    this.removeLastBotMessage();
                     this.displayMessage(responseText, 'bot');
                 }).catch(error => {
                     console.error('Error in onMessageSend:', error);
+                    this.removeLastBotMessage();
                     this.displayMessage("There was an error processing your request.", 'bot');
                 });
             } else {
-                // Default behavior if no callback is provided
+                this.removeLastBotMessage();
                 this.displayMessage("This is a default response.", 'bot');
             }
         }
@@ -73,9 +78,16 @@ class ChatInterface {
     displayMessage(text, sender) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${sender}`;
-        messageDiv.textContent = text;
+        messageDiv.innerHTML = text; // Use innerHTML to allow HTML content
         this.messages.appendChild(messageDiv);
         this.messages.scrollTop = this.messages.scrollHeight; // Auto scroll
+    }
+
+    removeLastBotMessage() {
+        const botMessages = this.messages.getElementsByClassName('bot');
+        if (botMessages.length > 0) {
+            this.messages.removeChild(botMessages[botMessages.length - 1]);
+        }
     }
 }
 

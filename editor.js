@@ -1,26 +1,38 @@
-// Initialize the Code Editor (using Ace Editor)
-const editor = ace.edit("codeEditor");
-editor.setTheme("ace/theme/monokai");
-editor.getSession().setMode("ace/mode/javascript");
+document.addEventListener('DOMContentLoaded', function() {
+    // Set up the Ace Editor
+    const editor = ace.edit("codeEditor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/javascript");
 
-// When the "Run Code" button is clicked, execute the code from the editor
-document.getElementById('runCode').addEventListener('click', () => {
-    const userCode = editor.getValue();
-
-    // Clear any previous chat interface
-    document.getElementById('chatInterfaceContainer').innerHTML = '';
-
-    try {
-        // Create a new script element to run the user code
-        const script = document.createElement('script');
-        script.innerHTML = userCode;
-        document.body.appendChild(script);
-
-        // Optionally, you could return some success feedback here
-        console.log("Code executed successfully!");
-    } catch (error) {
-        // Display error in console if the code has an issue
-        console.error("Error executing code:", error);
-        alert("Error in the code! Check the console for details.");
+    // Default code
+    const defaultCode = `
+const chat = new ChatInterface({
+    container: document.getElementById('chatInterfaceContainer'),
+    headerText: "Welcome to CHI",
+    subHeaderText: "Your Chat Interface",
+    onMessageSend: async (message) => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(\`You said: \${message}\`);
+            }, 2000); // Simulated delay
+        });
     }
+});
+    `;
+    editor.setValue(defaultCode);
+
+    // Run the code when the button is clicked
+    document.getElementById('runCode').addEventListener('click', function() {
+        const userCode = editor.getValue();
+
+        // Clear previous chat interface
+        document.getElementById('chatInterfaceContainer').innerHTML = '';
+
+        // Use eval to run the user code (unsafe for production, only for demo purposes)
+        try {
+            eval(userCode);
+        } catch (error) {
+            console.error('Error running the code:', error);
+        }
+    });
 });

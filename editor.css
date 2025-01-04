@@ -1,0 +1,52 @@
+/* General container for the entire page */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* Code editor style */
+.editor {
+    margin-bottom: 20px;
+}
+
+/* Style for the "Run Code" button */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Chat interface display area */
+#chatInterfaceContainer {
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-height: 300px;
+    width: 100%;
+}
+
+/* Basic message styles */
+.message {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #ececec;
+}
+
+.user {
+    background-color: #DCF8C6;
+    text-align: right;
+}
+
+.bot {
+    background-color: #E4E4E4;
+    text-align: left;
+}

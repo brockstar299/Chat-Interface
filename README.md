@@ -1,8 +1,8 @@
-# CHI (Chat Interface) Framework
+# Chat Interface framework
 
 ## Overview
 
-The CHI (Chat Interface) framework provides a simple and flexible chat interface that can be integrated with AI or custom message handling.
+The Chat Interface framework provides a simple and flexible chat interface that can be integrated with AI or custom message handling.
 
 ## Project Structure
 
